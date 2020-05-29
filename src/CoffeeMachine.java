@@ -5,7 +5,7 @@ public class CoffeeMachine {
     int milk = 540;
     int coffeeBeans = 120;
     int cups = 9;
-    int money = 500;
+    int money = 550;
 
     public CoffeeMachine(){}
 
@@ -29,13 +29,13 @@ public class CoffeeMachine {
         System.out.println(machine.cups + " of disposable cups");
         System.out.println(machine.money + " of money");
 
-        System.out.println("Write an action (buy, fill, take)");
+        System.out.println("Write an action (buy, fill, take, remaining, exit)");
 
         String action = scanner.nextLine();
 
         switch (action){
             case "buy":
-                System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:");
+                System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:");
                 int buyTipeOfCoffe = scanner.nextInt();
                 switch (buyTipeOfCoffe){
                     case 1:
@@ -55,11 +55,18 @@ public class CoffeeMachine {
                 break;
 
             case "take":
-                System.out.println("I gave you + $" + machine.money );
+                machine.retirar();
+                break;
+
+            case "remaining":
+                machine.mostrarStatusCoffeMachine();
+                break;
+
+            case "exit":
+                // agregar método para salida
                 break;
         }
 
-        machine.mostrarStatusCoffeMachine();
     }
 
     public void comprarEspresso() {
@@ -71,8 +78,8 @@ public class CoffeeMachine {
         if (this.water >= (waterEspresso) && this.coffeeBeans >= (beansEspresso) && this.money >= (priceEspresso)) {
             this.money = this.money + priceEspresso;
             this.water = this.water - waterEspresso;
-            this.coffeeBeans = this.coffeeBeans - coffeeBeans;
-            this.cups = this.cups;
+            this.coffeeBeans = this.coffeeBeans - beansEspresso;
+            this.cups = this.cups - 1;
         }
     }
 
@@ -87,7 +94,7 @@ public class CoffeeMachine {
                 this.money = this.money + priceLatte;
                 this.water = this.water - waterLatte;
                 this.milk = this.milk - milkLatte;
-                this.coffeeBeans = this.coffeeBeans - coffeeBeans;
+                this.coffeeBeans = this.coffeeBeans - beansLatte;
                 this.cups = this.cups - 1;
             }
         }
@@ -104,7 +111,7 @@ public class CoffeeMachine {
                 this.money = this.money + priceCappucino;
                 this.water = this.water - waterCappuccino;
                 this.milk = this.milk - milkCappucino;
-                this.coffeeBeans = this.coffeeBeans - coffeeBeans;
+                this.coffeeBeans = this.coffeeBeans - beansCappucino;
                 this.cups = this.cups - 1;
             }
         }
@@ -123,7 +130,13 @@ public class CoffeeMachine {
         coffeeBeans = coffeeBeans + addCoffeeBeans;
         System.out.println("Write how many disposable cups of coffee do you want to add:");
         int addCups = scanner.nextInt();
-        cups = cups + addCoffeeBeans;
+        cups = cups + addCups;
+    }
+
+    public void retirar(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("I gave you " + money);
+        money = 0;
     }
 
     public void mostrarStatusCoffeMachine(){
@@ -134,7 +147,4 @@ public class CoffeeMachine {
         System.out.println(cups + " of disposable cups");
         System.out.println(money + " of money");
     }
-
-
 }
-
