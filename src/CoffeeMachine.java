@@ -58,6 +58,8 @@ public class CoffeeMachine {
                 System.out.println("I gave you + $" + machine.money );
                 break;
         }
+
+        machine.mostrarStatusCoffeMachine();
     }
 
     public void comprarEspresso() {
@@ -129,6 +131,8 @@ public class CoffeeMachine {
         System.out.println(water + " of water");
         System.out.println(milk + " of milk" );
         System.out.println(coffeeBeans + " of coffee beans");
+        System.out.println(cups + " of disposable cups");
+        System.out.println(money + " of money");
     }
 
 
